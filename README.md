@@ -1,4 +1,19 @@
 <div align="center">
+  <br />
+    <a>
+      <img src="https://raw.githubusercontent.com/phyntom/yc-directory/7120de5a9ce99043b9c2660b768616d72dee1df8/image.png" alt="Project Banner">
+    </a>
+  <br />
+  </div>
+
+<h3 align="center">Startup Directory Platform</h3>
+
+   <div align="center">
+     Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
+    </div>
+</div>
+
+<div align="center">
 
 # Startup Directory Platform
 

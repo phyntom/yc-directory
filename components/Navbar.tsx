@@ -27,29 +27,39 @@ const Navbar = async () => {
 								<button type='submit'>Sign out</button>
 							</form>
 							<Link href={`/user/${session.user.id}`}>
-								<span className='text-gray-600 hover:text-gray-800'>{session?.user?.name || session.user.email}</span>
+								<Image
+									src={session?.user?.image || '/default-avatar.png'}
+									alt='Profile'
+									width={32}
+									height={32}
+									className='rounded-full'
+								/>
+								{/* <span className='text-gray-600 hover:text-gray-800'>{session?.user?.name || session.user.email}</span> */}
 							</Link>
 						</>
 					) : (
-						<form
-							action={async () => {
-								'use server';
-								await signIn('github');
-							}}
-						>
-							<button type='submit' className='mx-2'>
-								Sign in with GitHub
-							</button>
-							<button
-								type='submit'
-								onClick={async () => {
+						<>
+							<form
+								action={async () => {
+									'use server';
+									await signIn('github');
+								}}
+							>
+								<button type='submit' className='border px-3 py-2 rounded-md hover:bg-gray-200'>
+									Sign GitHub
+								</button>
+							</form>
+							<form
+								action={async () => {
 									'use server';
 									await signIn('google');
 								}}
 							>
-								Sign in with Google
-							</button>
-						</form>
+								<button type='submit' className='border px-3 py-2 rounded-md hover:bg-gray-200'>
+									Sign Google
+								</button>
+							</form>
+						</>
 					)}
 				</div>
 			</nav>

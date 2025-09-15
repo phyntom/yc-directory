@@ -1,57 +1,21 @@
 import { auth } from '@/auth';
 import SearchForm from '@/components/SearchForm';
-import StartupCard from '@/components/StartupCard';
-import { Post } from '@/types';
+import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
+import { client } from '@/sanity/lib/client';
+import { sanityFetch, SanityLive } from '@/sanity/lib/live';
+import { STARTUP_QUERY } from '@/sanity/lib/queries';
+import { writeClient } from '@/sanity/lib/write.client';
 
-export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }> }) {
+interface HomeProps {
+	searchParams: Promise<{ query?: string }>;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
 	const query = (await searchParams).query;
-	const posts: Array<Post> = [
-		{
-			createdAt: '2023-10-01T12:00:00Z',
-			views: 55,
-			likes: 40,
-			author: {
-				_id: '1',
-				name: 'Steven Brown',
-			},
-			_id: '1',
-			description:
-				'We Robots is revolutionizing the technology sector with cutting-edge robotics solutions for businesses and consumers. Our mission is to automate everyday tasks and empower industries with smart, adaptive machines.',
-			image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=60', // Robot image for We Robots
-			category: 'Technology',
-			title: 'We Robots',
-		},
-		{
-			createdAt: '2023-12-02T12:00:00Z',
-			views: 120,
-			likes: 80,
-			author: {
-				_id: '2',
-				name: 'Jane Smith',
-			},
-			_id: '2',
-			description:
-				'Healthify is dedicated to making healthcare accessible and personalized. Our platform connects patients with top healthcare professionals and provides AI-driven health insights for better living.',
-			image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=60', // Healthify
-			category: 'Health',
-			title: 'Healthify',
-		},
-		{
-			createdAt: '2023-06-22T12:00:00Z',
-			views: 75,
-			likes: 50,
-			author: {
-				_id: '3',
-				name: 'Alice Johnson',
-			},
-			_id: '3',
-			description:
-				'FinTech Innovations is transforming the finance industry with secure, user-friendly digital banking and investment solutions. We help individuals and businesses manage money smarter and faster.',
-			image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=60', // FinTech Innovations
-			category: 'Finance',
-			title: 'EcoTrack',
-		},
-	];
+	const params = { search: query || null };
+	const session = await auth();
+	console.log(session?.user);
+	const { data: posts } = await sanityFetch({ query: STARTUP_QUERY, params });
 	return (
 		<>
 			<section className='pink_container'>
@@ -65,10 +29,10 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
 				<p className='text-30-semibold'>
 					{query ? `Search results for "${query}"` : 'Search for startups by name, category, or founder.'}
 				</p>
-				<ul className='mt-5 card_grid'>
+				<ul className='mt-7 card_grid'>
 					{posts.length > 0 ? (
 						<>
-							{posts.map((post: Post) => (
+							{posts.map((post: StartupTypeCard) => (
 								<StartupCard key={post?._id} post={post} />
 							))}
 						</>
@@ -77,6 +41,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
 					)}
 				</ul>
 			</section>
+			<SanityLive />
 		</>
 	);
 }

@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import build from 'next/dist/build';
 
 const nextConfig: NextConfig = {
 	images: {
@@ -6,20 +7,19 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'placehold.co',
-				pathname: '/**',
-			},
-			{
-				protocol: 'https',
-				hostname: 'avatars.githubusercontent.com',
-				pathname: '/**',
-			},
-			{
-				protocol: 'https',
-				hostname: 'lh3.googleusercontent.com',
+				hostname: '*',
 				pathname: '/**',
 			},
 		],
+	},
+	experimental: {
+		ppr: 'incremental',
+		after: true,
+	},
+	devIndicators: {
+		appIsrStatus: true,
+		buildActivity: true,
+		buildActivityPosition: 'bottom-right',
 	},
 };
 

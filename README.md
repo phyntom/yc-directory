@@ -27,7 +27,7 @@
 - [🤸 Quick Start](#quick-start)
 - [🕸️ Snippets (Code to Copy)](#snippets-code-to-copy)
 - [🔗 Assets](#assets)
-- [🚀 More](#more)
+- [🚀 Sanity Integration](#sanity-integration)
 
 ## Introduction
 
@@ -80,6 +80,11 @@ and many more, including the latest React 19, Next.js 15 and Sanity features alo
 
 <!-- Add your assets section here -->
 
-## More
+## Sanity Integration
+
+Initialize your project with the CLI
+Run this command in your Terminal to continue setting up your project.
+
+`npm create sanity@latest -- --project [project_id] --dataset production --template clean`
 
 <!-- Add your more section here -->

@@ -1,5 +1,5 @@
 export interface Post {
-	createdAt: string;
+	_createdAt: string;
 	views: number;
 	likes: number;
 	author: {
@@ -11,4 +11,5 @@ export interface Post {
 	image: string;
 	category: string;
 	title: string;
+	pitch?: string;
 }

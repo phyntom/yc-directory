@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { auth, signIn, signOut } from '@/auth'; // Importing auth functions
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub } from 'react-icons/fa';
 
 const Navbar = async () => {
 	const session = await auth();
@@ -13,7 +15,7 @@ const Navbar = async () => {
 				<div className='flex items-center space-x-4 gap-5 text-gray-900'>
 					{session && session?.user ? (
 						<>
-							<Link href='startups/create'>
+							<Link href='startup/create'>
 								<span>Create</span>
 							</Link>
 							<form
@@ -46,7 +48,7 @@ const Navbar = async () => {
 								}}
 							>
 								<button type='submit' className='border px-3 py-2 rounded-md hover:bg-gray-200'>
-									Sign GitHub
+									<FaGithub />
 								</button>
 							</form>
 							<form
@@ -56,7 +58,7 @@ const Navbar = async () => {
 								}}
 							>
 								<button type='submit' className='border px-3 py-2 rounded-md hover:bg-gray-200'>
-									Sign Google
+									<FcGoogle />
 								</button>
 							</form>
 						</>

@@ -9,7 +9,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 	providers: [GitHub, Google],
 	callbacks: {
 		async signIn({ user, profile, account }) {
-			console.log('Account:', account);
 			let id, login, bio, name, email, image;
 			if (account?.provider === 'github') {
 				// GitHub profile fields

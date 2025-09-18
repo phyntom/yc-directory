@@ -10,19 +10,15 @@ import { IoIosSend } from 'react-icons/io';
 import { startupSchema } from '@/lib/validation';
 import type { StartupFormData, StartupFormErrors } from '@/lib/validation';
 import { z } from 'zod';
-import { useToast } from '@/hooks/use-toast';
-import { useRouter } from 'next/router';
-import { writeClient } from '@/sanity/lib/write.client';
-import { auth } from '@/auth';
-import { client } from '@/sanity/lib/client';
-import { AUTHOR_BY_GITHUB_ID_QUERY } from '@/sanity/lib/queries';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { createStartup } from '@/lib/actions';
+import { formatDate } from '@/lib/utils';
 
 const StartupForm = () => {
 	const [errors, setErrors] = useState<StartupFormErrors>({});
-	const [pitch, setPitch] = useState<string>('');
-	const { toast } = useToast();
+	const [pitch, setPitch] = useState('');
 	const router = useRouter();
-	const session = await auth();
 
 	const [state, formAction, isPending] = useActionState(handleFormSubmit, {
 		error: '',
@@ -36,27 +32,30 @@ const StartupForm = () => {
 				description: formData.get('description') as string,
 				category: formData.get('category') as string,
 				link: formData.get('link') as string,
-				pitch: formData.get('pitch') as string,
+				pitch,
 			};
-			const result = startupSchema.safeParse(formValues);
-			// const result = await createStartup(prevState,formData,pitch)
-			if (result.success) {
-				toast({
-					title: 'Success',
-					description: 'Startup created successfully',
+			await startupSchema.parseAsync(formValues);
+
+			const result = await createStartup(formValues);
+			if (result.status === 'SUCCESS') {
+				toast.success(`${formValues.title} has been created`, {});
+				router.push(`/startup/${result._id}`);
+			} else if (result.status === 'ERROR') {
+				toast.error('Error creating startup', {
+					description: result.error,
 				});
-				router.push(`/startup/id`);
-				return { ...prevState, error: '', status: 'SUCCESS' };
 			}
+			return result;
 		} catch (error) {
 			if (error instanceof z.ZodError) {
 				const fieldErrors = z.flattenError(error).fieldErrors;
-				console.log(fieldErrors);
 				setErrors(fieldErrors as StartupFormErrors);
+				toast.error('Error occurs', {
+					description: 'An unexpected error has occurred',
+				});
 				return { ...prevState, error: 'Validation failed', status: 'ERROR' };
 			}
 		}
-		return { ...prevState, error: 'An expected error has occured', status: 'ERROR' };
 	}
 
 	return (
@@ -106,19 +105,23 @@ const StartupForm = () => {
 				</label>
 				<MDEditor
 					value={pitch}
-					onChange={(value) => setPitch(value as string)}
+					onChange={(value) => {
+						// Add this line
+						setPitch(value as string);
+					}}
 					id='pitch'
 					preview='edit'
 					height={300}
 					style={{ borderRadius: 20, overflow: 'hidden' }}
 					textareaProps={{
-						placeholder: 'Describe what problem your startup solves ...',
+						placeholder: 'Briefly describe your idea and what problem it solves',
 					}}
 					previewOptions={{
-						rehypePlugins: [[rehypeSanitize]],
 						disallowedElements: ['style'],
+						rehypePlugins: [[rehypeSanitize]],
 					}}
 				/>
+				{/* <MDEditor.Markdown source={pitch} rehypePlugins={[[rehypeSanitize]]} /> */}
 				{errors.pitch && <p className='startup-form_error'>{errors.pitch[0]}</p>}
 			</div>
 			<Button type='submit' className='startup-form_btn' disabled={isPending}>

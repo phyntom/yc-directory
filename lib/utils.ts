@@ -14,6 +14,6 @@ export function formatDate(dateString: string): string {
 	return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
-export function parseResponse<T>(response: T) {
+export function parseActionResponse<T>(response: T) {
 	return JSON.parse(JSON.stringify(response)) as T;
 }

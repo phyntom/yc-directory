@@ -12,6 +12,7 @@ export const author = defineType({
 			type: 'string',
 			title: 'Id',
 			description: 'Unique identifier for the author',
+			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: 'name',

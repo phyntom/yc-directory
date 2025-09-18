@@ -3,7 +3,7 @@ import SearchForm from '@/components/SearchForm';
 import StartupCard, { StartupTypeCard } from '@/components/StartupCard';
 import { client } from '@/sanity/lib/client';
 import { sanityFetch, SanityLive } from '@/sanity/lib/live';
-import { STARTUP_QUERY } from '@/sanity/lib/queries';
+import { STARTUPS_QUERY } from '@/sanity/lib/queries';
 import { writeClient } from '@/sanity/lib/write.client';
 
 interface HomeProps {
@@ -14,7 +14,7 @@ export default async function Home({ searchParams }: HomeProps) {
 	const query = (await searchParams).query;
 	const params = { search: query || null };
 	const session = await auth();
-	const { data: posts } = await sanityFetch({ query: STARTUP_QUERY, params });
+	const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 	return (
 		<>
 			<section className='pink_container'>

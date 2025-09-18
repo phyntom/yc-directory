@@ -1,31 +1,45 @@
 'use server';
-import { client } from '@/sanity/lib/client';
 import { StartupFormData } from './validation';
-import { AUTHOR_BY_GITHUB_ID_QUERY } from '@/sanity/lib/queries';
 import { writeClient } from '@/sanity/lib/write.client';
 import { auth } from '@/auth';
-import { parseResponse } from './utils';
+import { parseActionResponse } from './utils';
+import slugify from 'slugify';
 
-export async function createStartup(startup: StartupFormData) {
-	// const existingUser = await client.withConfig({ useCdn: false }).fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
-	// 	id,
-	// });
-	const session = await auth();
-	if (!session) {
-		return parseResponse({ error: 'User not authenticated', status: 'ERROR' });
+export const createStartup = async (startup: StartupFormData) => {
+	try {
+		const session = await auth();
+		console.log('Session', session);
+
+		if (!session) {
+			return parseActionResponse({ error: 'User not authenticated', status: 'ERROR' });
+		}
+		const slug = slugify(startup.title, { lower: true, strict: true });
+		const result = await writeClient.create({
+			_type: 'startup',
+			slug: {
+				_type: slug,
+				current: slug,
+			},
+			author: {
+				_type: 'reference',
+				_ref: String(session.id),
+			},
+			title: startup.title,
+			description: startup.description,
+			category: startup.category,
+			image: startup.link,
+			pitch: startup.pitch,
+		});
+
+		return parseActionResponse({
+			...result,
+			error: '',
+			status: 'SUCCESS',
+		});
+	} catch (error) {
+		return parseActionResponse({
+			error: JSON.stringify(error),
+			status: 'ERROR',
+		});
 	}
-	const { title, description, category, link, pitch } = startup;
-	const slug = slugify(title, { lower: true, strict: true });
-	const result = await writeClient.create({
-		_type: 'startup',
-		title,
-		slug,
-		description,
-		category,
-		link,
-		pitch,
-	});
-}
-function slugify(title: string, p0: { lower: boolean; strict: boolean }) {
-	throw new Error('Function not implemented.');
-}
+};

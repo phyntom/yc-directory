@@ -20,10 +20,10 @@ const md = markdownit();
 export default async function StartupPage({ params }: StartupPageProps) {
 	const id = (await params).id;
 	const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
-	if (!post) {
-		return notFound();
-	}
+	if (!post) return notFound();
+
 	const parsedContent = md.render(post?.pitch || '');
+
 	return (
 		<>
 			<section className='pink_container !min-h-[230px]'>
@@ -55,8 +55,9 @@ export default async function StartupPage({ params }: StartupPageProps) {
 
 						<p className='category-tag'>{post.category}</p>
 					</div>
-
-					<h3 className='text-30-bold'>Pitch Details</h3>
+					<h3 className='text-30-bold !text-orange-600'>Description</h3>
+					<article className='prose max-w-4xl font-work-sans break-all'>{post.description}</article>
+					<h3 className='text-30-bold !text-orange-600'>Pitch Details</h3>
 					{parsedContent ? (
 						<article
 							className='prose max-w-4xl font-work-sans break-all'

@@ -5,7 +5,14 @@ import { auth } from '@/auth';
 import { parseActionResponse } from './utils';
 import slugify from 'slugify';
 
-export const createStartup = async (startup: StartupFormData) => {
+type ActionResponse = {
+	error: string;
+	status: 'SUCCESS' | 'ERROR';
+	_id?: string;
+	_createdAt?: string;
+};
+
+export const createStartup = async (startup: StartupFormData): Promise<ActionResponse> => {
 	try {
 		const session = await auth();
 		console.log('Session', session);

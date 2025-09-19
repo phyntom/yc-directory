@@ -12,7 +12,7 @@ const Navbar = async () => {
 				<Link href='/' className='text-2xl font-bold text-gray-800'>
 					<Image src='/logo.png' alt='Logo' width={144} height={30} className='inline-block ml-2' />
 				</Link>
-				<div className='flex items-center space-x-4 gap-5 text-gray-900'>
+				<div className='flex items-center space-x-2 gap-1 text-gray-900'>
 					{session && session?.user ? (
 						<>
 							<Link href='/startup/create'>

@@ -51,7 +51,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 				const existingUser = await client.withConfig({ useCdn: false }).fetch(AUTHOR_BY_USER_ID_QUERY, {
 					id: String(id),
 				});
-				console.log('Existing User in JWT callback:', existingUser);
 				token.id = existingUser?._id;
 			}
 			return token;

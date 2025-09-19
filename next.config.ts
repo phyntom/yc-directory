@@ -1,3 +1,4 @@
+import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
@@ -27,4 +28,16 @@ const nextConfig: NextConfig = {
 	},
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+	org: 'phyntomio',
+	project: 'javascript-nextjs',
+	silent: !process.env.CI,
+	authToken: process.env.SENTRY_AUTH_TOKEN,
+	widenClientFileUpload: true,
+	// Automatically tree-shake Sentry logger statements to reduce bundle size
+	disableLogger: true,
+	automaticVercelMonitors: true,
+	reactComponentAnnotation: {
+		enabled: true,
+	},
+});

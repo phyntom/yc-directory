@@ -34,7 +34,11 @@ export default async function StartupPage({ params }: StartupPageProps) {
 			</section>
 
 			<section className='section_container'>
-				<img src={post.image} alt='thumbnail' className='w-full h-auto rounded-xl' />
+				<img
+					src={post.image}
+					alt='thumbnail'
+					className='w-full max-h-96 h-auto rounded-xl shadow-orange-600 shadow-100 object-cover mx-auto transition-all duration-700 hover:shadow-300'
+				/>
 
 				<div className='space-y-5 mt-10 max-w-4xl mx-auto'>
 					<div className='flex-between gap-5'>

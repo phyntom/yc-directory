@@ -14,7 +14,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 	return (
 		<li className='startup-card group'>
 			<div className='flex-between'>
-				<p className='startup_card_date'>{formatDate(_createdAt)}</p>
+				<p className='startup-card_date'>{formatDate(_createdAt)}</p>
 				<div className='flex gap-1.5'>
 					<EyeIcon className='size-6 text-primary' />
 					<span className='text-16-medium'>{views}</span>
@@ -24,10 +24,10 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 			<div className='flex-between mt-5 gap-5'>
 				<div className='flex-1'>
 					<Link href={`/user/${author?._id}`}>
-						<p className='text-16-medium line-clamp-1'>{author?.name}</p>
+						<p className='startup-card_author'>{author?.name}</p>
 					</Link>
 					<Link href={`/startup/${_id}`}>
-						<h3 className='text-26-semibold line-clamp-1'>{title}</h3>
+						<h3 className='startup-card_title'>{title}</h3>
 					</Link>
 				</div>
 				<Link href={`/user/${author?._id}`}>

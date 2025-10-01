@@ -28,6 +28,7 @@
 - [🕸️ Snippets (Code to Copy)](#snippets-code-to-copy)
 - [🔗 Assets](#assets)
 - [🚀 Sanity Integration](#sanity-integration)
+- [Monitoring with Sentry](#monitoring-with-sentry)
 
 ## Introduction
 
@@ -88,3 +89,4 @@ Run this command in your Terminal to continue setting up your project.
 `npm create sanity@latest -- --project [project_id] --dataset production --template clean`
 
 <!-- Add your more section here -->
+## Monitoring with Sentry

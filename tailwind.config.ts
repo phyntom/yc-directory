@@ -15,10 +15,11 @@ const config: Config = {
 			},
 			colors: {
 				primary: {
-					'100': '#FFE8F0',
-					DEFAULT: '#EE2B69',
+					'100': '#5D2F77',
+					DEFAULT: '#3E1E68',
 				},
-				secondary: '#FBE843',
+				secondary: '#E45A92',
+				tertiary: '#FFACAC',
 				black: {
 					'100': '#333333',
 					'200': '#141413',

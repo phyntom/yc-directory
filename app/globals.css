@@ -64,7 +64,7 @@
 	}
 
 	.section_container {
-		@apply px-6 py-10 max-w-7xl mx-auto;
+		@apply px-10 py-10 max-w-6xl mx-auto;
 	}
 
 	.card_grid {
@@ -85,7 +85,7 @@
 	}
 
 	.profile_card {
-		@apply w-80 px-6 pb-6 pt-20 flex flex-col justify-center items-center bg-primary border-[5px] border-black shadow-100 rounded-[30px] relative z-0 h-fit max-lg:w-full;
+		@apply w-96 px-6 pb-6 pt-20 flex flex-col justify-center items-center bg-primary border-[5px] border-black shadow-100 rounded-[30px] relative z-0 h-fit max-lg:w-full;
 	}
 
 	.profile_title {
@@ -133,15 +133,21 @@
 
 	/* startupcard */
 	.startup-card {
-		@apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-primary transition-all duration-500 hover:shadow-300 hover:bg-primary-100;
+		@apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:bg-primary-100 hover:border-primary-100 transition-all duration-500 hover:shadow-300;
 	}
 
 	.startup-card_date {
-		@apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full group-hover:bg-white-100;
+		@apply font-medium text-[16px] py-2 rounded-full group-hover:text-white-100;
+	}
+	.startup-card_title {
+		@apply font-semibold text-[26px] text-black line-clamp-1 group-hover:text-white-100;
+	}
+	.startup-card_author {
+		@apply font-medium text-[16px] text-black line-clamp-1 group-hover:text-white-100;
 	}
 
 	.startup-card_desc {
-		@apply font-normal text-[16px] line-clamp-2 my-3 text-black-100 break-all;
+		@apply font-normal text-[16px] line-clamp-2 my-3 text-black-100 break-all group-hover:text-white;
 	}
 
 	.startup-card_img {
@@ -191,11 +197,11 @@
 	}
 
 	.view-text {
-		@apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-lg capitalize;
+		@apply font-medium text-[16px] bg-tertiary px-4 py-2 rounded-lg capitalize;
 	}
 
 	.category-tag {
-		@apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full;
+		@apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full text-secondary;
 	}
 
 	.pattern {
@@ -218,4 +224,15 @@
 
 .w-md-editor-toolbar {
 	padding: 10px !important;
+}
+
+#sentry-feedback {
+	/* adjust these as desired */
+	--bottom: 60px;
+	--left: 20px; /* move it to bottom-left */
+	--right: auto;
+	--top: auto;
+
+	/* optionally adjust z-index so it's above other UI */
+	--z-index: 2000;
 }

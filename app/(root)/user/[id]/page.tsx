@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import UserStartups from '@/components/UserStartups';
 import { Suspense } from 'react';
+import { cn } from '@/lib/utils';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const experimental_ppr = true;
 
@@ -39,7 +41,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
 				<div className='flex-1 flex flex-col gap-5 lg:-mt-5'>
 					<p>{session?.id === id ? 'Your' : 'All'} Startups</p>
 					<ul className='card_grid-sm'>
-						<Suspense fallback={<p>Loading...</p>}>
+						<Suspense fallback={<StartupSkeleton />}>
 							<UserStartups id={user._id} />
 						</Suspense>
 					</ul>
@@ -48,5 +50,15 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
 		</>
 	);
 };
+
+export const StartupSkeleton = () => (
+	<>
+		{[0, 1, 2, 3, 4].map((index) => (
+			<li key={cn('skeleton', index)}>
+				<Skeleton className='startup-card_skeleton' />
+			</li>
+		))}
+	</>
+);
 
 export default ProfilePage;

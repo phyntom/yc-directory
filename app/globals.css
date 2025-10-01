@@ -133,11 +133,11 @@
 
 	/* startupcard */
 	.startup-card {
-		@apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-primary transition-all duration-500 hover:shadow-300 hover:bg-primary-100;
+		@apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:bg-primary-100 hover:border-primary-100 transition-all duration-500 hover:shadow-300;
 	}
 
 	.startup-card_date {
-		@apply font-medium text-[16px] text-white-100 bg-primary-100 px-4 py-2 rounded-full group-hover:text-white-100;
+		@apply font-medium text-[16px] py-2 rounded-full group-hover:text-white-100;
 	}
 	.startup-card_title {
 		@apply font-semibold text-[26px] text-black line-clamp-1 group-hover:text-white-100;
@@ -197,11 +197,11 @@
 	}
 
 	.view-text {
-		@apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-lg capitalize;
+		@apply font-medium text-[16px] bg-tertiary px-4 py-2 rounded-lg capitalize;
 	}
 
 	.category-tag {
-		@apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full;
+		@apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full text-secondary;
 	}
 
 	.pattern {

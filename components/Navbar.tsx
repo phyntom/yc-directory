@@ -3,20 +3,26 @@ import Image from 'next/image';
 import { auth, signIn, signOut } from '@/auth'; // Importing auth functions
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
+import { IoMdLogIn } from 'react-icons/io';
+import { CiCirclePlus } from 'react-icons/ci';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Navbar = async () => {
 	const session = await auth();
 	return (
 		<div className='px-5 py-3 bg-white shadow-sm font-work-sans'>
-			<nav className='flex items-center justify-between'>
+			<nav className='flex justify-between items-center'>
 				<Link href='/' className='text-2xl font-bold text-gray-800'>
 					<Image src='/logo.png' alt='Logo' width={144} height={30} className='inline-block ml-2' />
 				</Link>
-				<div className='flex items-center space-x-2 gap-1 text-gray-900'>
+				<div className='flex justify-center items-center gap-5 text-gray-900'>
 					{session && session?.user ? (
 						<>
 							<Link href='/startup/create'>
-								<span>Create</span>
+								<span className='max-sm:hidden'>Create</span>
+								<span className='sm:hidden'>
+									<CiCirclePlus className='text-black-100 size-6' />
+								</span>
 							</Link>
 							<form
 								action={async () => {
@@ -26,16 +32,18 @@ const Navbar = async () => {
 									});
 								}}
 							>
-								<button type='submit'>Sign out</button>
+								<button type='submit' className='flex items-center justify-center'>
+									<span className='max-sm:hidden'>Sign out</span>
+									<span className='sm:hidden'>
+										<IoMdLogIn className=' text-black-100 size-6' />
+									</span>
+								</button>
 							</form>
 							<Link href={`/user/${session.user.id}`}>
-								<Image
-									src={session?.user?.image || '/default-avatar.png'}
-									alt='Profile'
-									width={32}
-									height={32}
-									className='rounded-full'
-								/>
+								<Avatar>
+									<AvatarImage src={session?.user?.image as string} alt="user avatar"/>
+									<AvatarFallback>CN</AvatarFallback>
+								</Avatar>
 								{/* <span className='text-gray-600 hover:text-gray-800'>{session?.user?.name || session.user.email}</span> */}
 							</Link>
 						</>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Author, Startup } from '@/sanity/types';
 import { Skeleton } from '@/components/ui/skeleton';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export type StartupTypeCard = Omit<Startup, 'author'> & { author?: Author };
 
@@ -31,19 +32,37 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 					</Link>
 				</div>
 				<Link href={`/user/${author?._id}`}>
-					<Image src={author?.image!} alt={author?.name!} width={48} height={48} className='rounded-full' />
+					<OptimizedImage 
+						src={author?.image!} 
+						alt={author?.name!} 
+						width={48} 
+						height={48} 
+						className='rounded-full' 
+						sizes='48px'
+						quality={90}
+					/>
 				</Link>
 			</div>
 
 			<Link href={`/startup/${_id}`}>
 				<p className='startup-card_desc'>{description}</p>
 
-				<img src={image} alt='placeholder' className='startup-card_img' />
+				{image && (
+					<OptimizedImage 
+						src={image} 
+						alt={`${title} thumbnail`} 
+						width={400} 
+						height={200} 
+						className='startup-card_img' 
+						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px'
+						quality={80}
+					/>
+				)}
 			</Link>
 
 			<div className='flex-between gap-3 mt-5'>
 				<Link href={`/?query=${category?.toLowerCase()}`}>
-					<p className='text-16-medium'>{category}</p>
+					<p className='text-16-medium group-hover:text-white-100'>{category}</p>
 				</Link>
 				<Button className='startup-card_btn' asChild>
 					<Link href={`/startup/${_id}`}>Details</Link>

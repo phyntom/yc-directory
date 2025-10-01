@@ -11,7 +11,7 @@ function SearchForm({ query }: SearchFormProps) {
 			<input name='query' className='search-input' defaultValue={query} placeholder='Search Startups' />
 			<div className='flex gap-2'>
 				{query && <SearchFormReset />}
-				<button type='submit' className='search-btn text-white'>
+				<button type='submit' className='search-btn text-white' name='search button'>
 					<Search className='size-5' />
 				</button>
 			</div>

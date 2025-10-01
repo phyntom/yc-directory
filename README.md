@@ -1,7 +1,7 @@
 <div align="center">
   <br />
     <a>
-      <img src="https://raw.githubusercontent.com/phyntom/yc-directory/7120de5a9ce99043b9c2660b768616d72dee1df8/image.png" alt="Project Banner">
+      <img src="https://private-user-images.githubusercontent.com/6459711/495994702-20e19a7a-42fa-413b-b08a-8bd9cb2e0a37.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTkyOTQ2MjYsIm5iZiI6MTc1OTI5NDMyNiwicGF0aCI6Ii82NDU5NzExLzQ5NTk5NDcwMi0yMGUxOWE3YS00MmZhLTQxM2ItYjA4YS04YmQ5Y2IyZTBhMzcucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MTAwMSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTEwMDFUMDQ1MjA2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MjkxYjU5Y2Y0NzViOWMyZDc2ODgzN2M3M2Y1ODllNWY3ZDExYjJlNWQyZGIyNmMzZWI1MGExNTcxNDk4NjlhNSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.GiRG_cXQUtnVUqLhqaFOfuHPJphLDtXzTuQ0JR5URjo" alt="Project Banner">
     </a>
   <br />
   </div>

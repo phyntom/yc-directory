@@ -89,4 +89,12 @@ Run this command in your Terminal to continue setting up your project.
 `npm create sanity@latest -- --project [project_id] --dataset production --template clean`
 
 <!-- Add your more section here -->
-## Monitoring with Sentry
+### Monitoring with Sentry
+Sentry is a monitoring tool that helps us track errors and performance issues in our application. It provides us with detailed information about the issues that are occurring, allowing us to quickly identify and fix them.
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    <img src="https://private-user-images.githubusercontent.com/6459711/495997025-4291d1b8-2f22-4da8-862f-f210363188df.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTkyOTU2MDIsIm5iZiI6MTc1OTI1OTU1NjAyNS00MjkxZDFiOC0yZjIyLTRkYTgtODYyZi1mMjEwMzYzMTg0ZGYucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MTAwMSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTEwMDFUMDUwODIyWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9ZDU1YzhkYzNkNDljMzZmNWExYjVlM2Y0N2FmZjdkYmY5NmE1OGEzNWU1MDZlOGU0MTIzMTQ0ODYyYmQ0MTVkNCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ" alt="Sentry Logo">
+</div>
+
+
+
